@@ -1149,7 +1149,7 @@ class List(TopLevelNode):
     def __init__(self, **kwargs):
         super(List, self).__init__(type_=self._TYPE, **kwargs)
 
-    def add(self, text, checked=False):
+    def add(self, text, checked=False,sort_id=None):
         """Add a new item to the list.
 
         Args:
@@ -1159,6 +1159,9 @@ class List(TopLevelNode):
         node = ListItem(parent_id=self.id)
         node.checked = checked
         node.text = text
+        if sort_id is not None:
+            node._sort = sort_id
+        
         self.append(node, True)
         self.touch(True)
         return node
